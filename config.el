@@ -54,6 +54,27 @@
 (good-scroll-mode t)
 
 (setq default-frame-alist '((undecorated . t)))
+
+;; Debugger
+(setq dap-cpptools-extension-version "1.5.1")
+
+(with-eval-after-load 'lsp-rust
+  (require 'dap-gdb-lldb))
+
+(with-eval-after-load 'dap-mode
+  (setq dap-default-terminal-kind "integrated") ;; Make sure that terminal programs open a term for I/O in an Emacs buffer
+  (dap-auto-configure-mode +1))
+
+(map! :leader
+      (:prefix-map ("d" . "debug")
+       :desc "Toggle breakpoint" "t" #'dap-breakpoint-toggle
+       :desc "Next step" "j" #'dap-next
+       :desc "Step into" "i" #'dap-step-in
+       :desc "Step out" "o" #'dap-step-out
+       :desc "Continue" "c" #'dap-continue
+       :desc "Stop debugging" "q" #'dap-disconnect
+       :desc "Start debugging" "s" #'dap-debug))
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
