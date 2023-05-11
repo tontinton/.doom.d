@@ -65,6 +65,8 @@
   (setq dap-default-terminal-kind "integrated") ;; Make sure that terminal programs open a term for I/O in an Emacs buffer
   (dap-auto-configure-mode +1))
 
+(global-set-key (kbd "M-o") 'ff-find-other-file)
+
 (map! :leader
       (:prefix-map ("d" . "debug")
        :desc "Toggle breakpoint" "t" #'dap-breakpoint-toggle
