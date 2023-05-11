@@ -66,6 +66,7 @@
   (dap-auto-configure-mode +1))
 
 (global-set-key (kbd "M-o") 'ff-find-other-file)
+(global-set-key (kbd "C-/") 'comment-line)
 
 (map! :leader
       (:prefix-map ("d" . "debug")
